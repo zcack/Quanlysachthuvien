@@ -1,5 +1,8 @@
+
+import java.time.Year;
+
 public class Sach {
-    // Yêu cầu 1: Khai báo các thuộc tính
+    // Yêu cầu 1: Khai báo các thuộc tính private
     private String maSach;
     private String tieuDe;
     private String tacGia;
@@ -10,16 +13,16 @@ public class Sach {
     public Sach() {
     }
 
-    // Hàm khởi tạo đầy đủ tham số để dễ dàng tạo đối tượng
+    // Yêu cầu 4: Hàm khởi tạo đầy đủ tham số
     public Sach(String maSach, String tieuDe, String tacGia, int namXuatBan, int soLuong) {
         this.maSach = maSach;
         this.tieuDe = tieuDe;
         this.tacGia = tacGia;
-        this.namXuatBan = namXuatBan;
-        this.soLuong = soLuong;
+        setNamXuatBan(namXuatBan);
+        setSoLuong(soLuong);
     }
 
-    // Các phương thức Getter và Setter (giúp truy xuất/sửa dữ liệu nếu cần)
+    // Getter và Setter cho maSach
     public String getMaSach() {
         return maSach;
     }
@@ -28,6 +31,7 @@ public class Sach {
         this.maSach = maSach;
     }
 
+    // Getter và Setter cho tieuDe
     public String getTieuDe() {
         return tieuDe;
     }
@@ -36,6 +40,7 @@ public class Sach {
         this.tieuDe = tieuDe;
     }
 
+    // Getter và Setter cho tacGia
     public String getTacGia() {
         return tacGia;
     }
@@ -44,28 +49,40 @@ public class Sach {
         this.tacGia = tacGia;
     }
 
+    // Yêu cầu 3: Kiểm tra năm xuất bản
     public int getNamXuatBan() {
         return namXuatBan;
     }
 
     public void setNamXuatBan(int namXuatBan) {
-        this.namXuatBan = namXuatBan;
+        int currentYear = Year.now().getValue();
+
+        if (namXuatBan > 0 && namXuatBan <= currentYear) {
+            this.namXuatBan = namXuatBan;
+        } else {
+            System.out.println("Nam xuat ban khong hop le!");
+        }
     }
 
+    // Yêu cầu 3: Kiểm tra số lượng
     public int getSoLuong() {
         return soLuong;
     }
 
     public void setSoLuong(int soLuong) {
-        this.soLuong = soLuong;
+        if (soLuong >= 0) {
+            this.soLuong = soLuong;
+        } else {
+            System.out.println("So luong khong duoc am!");
+        }
     }
 
-    // Yêu cầu 2: Phương thức in thông tin chi tiết của cuốn sách
+    // Phương thức hiển thị thông tin sách
     public void hienThiThongTin() {
-        System.out.println("Ma sach: " + maSach 
-                + " | Tieu de: " + tieuDe 
-                + " | Tac gia: " + tacGia 
-                + " | Nam XB: " + namXuatBan 
+        System.out.println("Ma sach: " + maSach
+                + " | Tieu de: " + tieuDe
+                + " | Tac gia: " + tacGia
+                + " | Nam XB: " + namXuatBan
                 + " | So luong: " + soLuong);
     }
 }
